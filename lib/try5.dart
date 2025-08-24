@@ -5,7 +5,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[200], // light grey background
+        backgroundColor: Colors.white,
         body: Column(
           children: [
             // Top image
@@ -18,26 +18,15 @@ void main() {
                 ),
               ),
             ),
-
-            // White card with top rounded corners
+            
+            // White card with rounded top corners
             Expanded(
               child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(32),
-                    topRight: Radius.circular(32),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 10,
-                      offset: Offset(0, -3), // shadow above the card
-                    ),
-                  ],
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -53,7 +42,7 @@ void main() {
                       ),
                     ),
                     SizedBox(height: 24),
-
+                    
                     // Email TextField
                     TextField(
                       decoration: InputDecoration(
@@ -63,8 +52,8 @@ void main() {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
-
+                    SizedBox(height: 16), // spacing between Email and Password
+                    
                     // Password TextField
                     TextField(
                       obscureText: true,
@@ -75,24 +64,12 @@ void main() {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
-
-                    // Confirm Password TextField
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Confirm Password',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 24),
-
+                    SizedBox(height: 24), // spacing before button
+                    
                     // Sign Up button
                     ElevatedButton(
                       onPressed: () {
-                        print('Sign Up pressed');
+                        print('Sign Up pressed'); // action when tapped
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.purple,
@@ -106,30 +83,6 @@ void main() {
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
-                    SizedBox(height: 16),
-
-                    // Sign In link
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Already have an account? ',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            print('Sign In pressed');
-                          },
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(
-                              color: Colors.purple,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ),
@@ -140,4 +93,3 @@ void main() {
     ),
   );
 }
-

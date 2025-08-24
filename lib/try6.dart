@@ -5,7 +5,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[200], // light grey background
+        backgroundColor: Colors.white,
         body: Column(
           children: [
             // Top image
@@ -19,25 +19,14 @@ void main() {
               ),
             ),
 
-            // White card with top rounded corners
+            // White card with rounded top corners
             Expanded(
               child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(32),
-                    topRight: Radius.circular(32),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 10,
-                      offset: Offset(0, -3), // shadow above the card
-                    ),
-                  ],
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -140,4 +129,3 @@ void main() {
     ),
   );
 }
-
