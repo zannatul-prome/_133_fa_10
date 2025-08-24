@@ -5,7 +5,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[200], // light grey background
+        backgroundColor: Colors.grey[200], // light background to show card shape
         body: Column(
           children: [
             // Top image
@@ -35,7 +35,7 @@ void main() {
                       color: Colors.grey.withOpacity(0.3),
                       spreadRadius: 2,
                       blurRadius: 10,
-                      offset: Offset(0, -3), // shadow above the card
+                      offset: Offset(0, -3),
                     ),
                   ],
                 ),
@@ -140,4 +140,3 @@ void main() {
     ),
   );
 }
-
