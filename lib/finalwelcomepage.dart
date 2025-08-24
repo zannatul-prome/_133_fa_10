@@ -15,6 +15,7 @@ void main() {
                 image: DecorationImage(
                   image: AssetImage('assets/image.png'),
                   fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
                 ),
               ),
             ),
@@ -83,7 +84,7 @@ void main() {
                         print('Sign In pressed');
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.purple,
+                        backgroundColor: const Color.fromARGB(255, 121, 66, 223),
                         padding: EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -91,7 +92,7 @@ void main() {
                       ),
                       child: Text(
                         'Sign In',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 18,color: Colors.white, ),
                         
                       ),
                     ),

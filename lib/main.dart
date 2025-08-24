@@ -5,7 +5,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[200], // light background to show card shape
+        backgroundColor: Colors.grey[200], // light grey background
         body: Column(
           children: [
             // Top image
@@ -36,7 +36,7 @@ void main() {
                       color: Colors.grey.withOpacity(0.3),
                       spreadRadius: 2,
                       blurRadius: 10,
-                      offset: Offset(0, -3),
+                      offset: Offset(0, -3), // shadow above the card
                     ),
                   ],
                 ),
@@ -45,12 +45,12 @@ void main() {
                   children: [
                     // Title
                     Text(
-                      'Welcome Back',
+                      'Get Started',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.purple,
+                        color: const Color.fromARGB(255, 139, 38, 233),
                       ),
                     ),
                     SizedBox(height: 24),
@@ -76,45 +76,57 @@ void main() {
                         ),
                       ),
                     ),
+                    SizedBox(height: 16),
+
+                    // Confirm Password TextField
+                    TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: 'Confirm Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 24),
 
-                    // Sign In button
+                    // Sign Up button
                     ElevatedButton(
                       onPressed: () {
-                        print('Sign In pressed');
+                        print('Sign Up pressed');
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 121, 66, 223),
+                        backgroundColor: const Color.fromARGB(255, 126, 39, 176),
                         padding: EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: Text(
-                        'Sign In',
-                        style: TextStyle(fontSize: 18,color: Colors.white, ),
-                        
+                        'Sign Up',
+                        style: TextStyle(fontSize: 18,color: Colors.white),
                       ),
                     ),
                     SizedBox(height: 16),
 
-                    // Sign Up link
+                    // Sign In link
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Don’t have an account? ',
+                          'Already have an account? ',
                           style: TextStyle(color: Colors.grey),
                         ),
                         GestureDetector(
                           onTap: () {
-                            print('Sign Up pressed');
+                            print('Sign In pressed');
                           },
                           child: Text(
-                            'Sign Up',
+                            'Sign In',
                             style: TextStyle(
                               color: Colors.purple,
                               fontWeight: FontWeight.bold,
+                              
                             ),
                           ),
                         ),
