@@ -92,6 +92,7 @@ void main() {
                       child: Text(
                         'Sign In',
                         style: TextStyle(fontSize: 18),
+                        
                       ),
                     ),
                     SizedBox(height: 16),
