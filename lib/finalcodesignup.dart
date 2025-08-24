@@ -15,6 +15,7 @@ void main() {
                 image: DecorationImage(
                   image: AssetImage('assets/image.png'),
                   fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
                 ),
               ),
             ),
@@ -49,7 +50,7 @@ void main() {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.purple,
+                        color: const Color.fromARGB(255, 139, 38, 233),
                       ),
                     ),
                     SizedBox(height: 24),
@@ -95,7 +96,7 @@ void main() {
                         print('Sign Up pressed');
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.purple,
+                        backgroundColor: const Color.fromARGB(255, 126, 39, 176),
                         padding: EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -103,7 +104,7 @@ void main() {
                       ),
                       child: Text(
                         'Sign Up',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 18,color: Colors.white),
                       ),
                     ),
                     SizedBox(height: 16),
@@ -125,6 +126,7 @@ void main() {
                             style: TextStyle(
                               color: Colors.purple,
                               fontWeight: FontWeight.bold,
+                              
                             ),
                           ),
                         ),
