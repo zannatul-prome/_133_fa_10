@@ -54,7 +54,7 @@ void main() {
                     ),
                     SizedBox(height: 16), // spacing between Email and Password
                     
-                    // Password TextField
+                    // Password 
                     TextField(
                       obscureText: true, // hides the input text
                       decoration: InputDecoration(

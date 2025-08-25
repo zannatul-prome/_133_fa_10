@@ -19,7 +19,7 @@ void main() {
               ),
             ),
             
-            // White card with rounded top corners
+            // White card 
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -43,7 +43,7 @@ void main() {
                     ),
                     SizedBox(height: 24),
                     
-                    // Email TextField
+                    // Email 
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'Email',

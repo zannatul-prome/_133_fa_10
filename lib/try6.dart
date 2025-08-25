@@ -19,7 +19,7 @@ void main() {
               ),
             ),
 
-            // White card with top rounded corners
+            // White card
             Expanded(
               child: Container(
                 width: double.infinity,

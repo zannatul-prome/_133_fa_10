@@ -31,17 +31,10 @@ void main() {
                     topLeft: Radius.circular(32),
                     topRight: Radius.circular(32),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 10,
-                      offset: Offset(0, -3), // shadow above the card
-                    ),
-                  ],
+                  
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.center, // Center children horizontally
                   children: [
                     // Title
                     Text(
@@ -90,26 +83,29 @@ void main() {
                     ),
                     SizedBox(height: 24),
 
-                    // Sign Up button
-                    ElevatedButton(
-                      onPressed: () {
-                        print('Sign Up pressed');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 126, 39, 176),
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    // Sign Up button with fixed width
+                    SizedBox(
+                      width: 200, // fixed width
+                      child: ElevatedButton(
+                        onPressed: () {
+                          print('Sign Up pressed');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 126, 39, 176),
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(fontSize: 18,color: Colors.white),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
                     SizedBox(height: 16),
 
-                    // Sign In link
+                    // Sign In 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -126,7 +122,6 @@ void main() {
                             style: TextStyle(
                               color: Colors.purple,
                               fontWeight: FontWeight.bold,
-                              
                             ),
                           ),
                         ),
