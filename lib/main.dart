@@ -5,7 +5,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.grey[200], // light grey background
+        backgroundColor: Colors.grey[200], 
         body: Column(
           children: [
             // Top image
@@ -20,7 +20,7 @@ void main() {
               ),
             ),
 
-            // White card with top rounded corners
+            // White card 
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -34,21 +34,21 @@ void main() {
                   
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center, // Center children horizontally
+                  crossAxisAlignment: CrossAxisAlignment.center, 
                   children: [
                     // Title
                     Text(
-                      'Get Started',
+                      'Welcome Back',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 139, 38, 233),
+                        color: Colors.purple,
                       ),
                     ),
                     SizedBox(height: 24),
 
-                    // Email TextField
+                    // Email 
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'Email',
@@ -59,7 +59,7 @@ void main() {
                     ),
                     SizedBox(height: 16),
 
-                    // Password TextField
+                    // Password
                     TextField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -69,58 +69,46 @@ void main() {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
-
-                    // Confirm Password TextField
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Confirm Password',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
                     SizedBox(height: 24),
 
-                    // Sign Up button with fixed width
+                    // SignIn button 
                     SizedBox(
-                      width: 200, // fixed width
+                      width: 200, 
                       child: ElevatedButton(
                         onPressed: () {
-                          print('Sign Up pressed');
+                          print('Sign In pressed');
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 126, 39, 176),
+                          backgroundColor: const Color.fromARGB(255, 121, 66, 223),
                           padding: EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
                         child: Text(
-                          'Sign Up',
+                          'Sign In',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                       ),
                     ),
                     SizedBox(height: 16),
 
-                    // Sign In 
+                    // Sign Up 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Already have an account? ',
+                          'Don’t have an account? ',
                           style: TextStyle(color: Colors.grey),
                         ),
                         GestureDetector(
                           onTap: () {
-                            print('Sign In pressed');
+                            print('Sign Up pressed');
                           },
                           child: Text(
-                            'Sign In',
+                            'Sign Up',
                             style: TextStyle(
-                              color: Colors.purple,
+                              color: const Color.fromARGB(255, 107, 55, 204),
                               fontWeight: FontWeight.bold,
                             ),
                           ),

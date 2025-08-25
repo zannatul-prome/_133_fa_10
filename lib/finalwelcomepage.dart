@@ -34,7 +34,7 @@ void main() {
                   
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
+                  crossAxisAlignment: CrossAxisAlignment.center, 
                   children: [
                     // Title
                     Text(
