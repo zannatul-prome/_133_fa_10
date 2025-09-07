@@ -190,9 +190,24 @@ class _SignInPageState extends State<SignInPage> {
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}')),
-      );
+      // Handle specific email not confirmed error
+      if (e.toString().contains('email_not_confirmed') || e.toString().contains('Email not confirmed')) {
+        // User exists but email is not verified
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please verify your email first. Check your inbox.')),
+        );
+        
+        // Redirect to verification page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const EmailVerificationPage()),
+        );
+      } else {
+        // Handle other errors
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.toString()}')),
+        );
+      }
     } finally {
       setState(() {
         _isLoading = false;

@@ -1,7 +1,13 @@
+// auth_service.dart
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
+
+  // CORRECTED: Use the proper stream type
+  Stream<AuthState> get authStateChanges {
+    return _supabase.auth.onAuthStateChange;
+  }
 
   // Sign up with email and password
   Future<AuthResponse> signUp(String email, String password) async {
