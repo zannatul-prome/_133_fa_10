@@ -1,32 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'pages/signin_page.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await Supabase.initialize(
-    url: "https://dqagdnnxomobyyofpmto.supabase.co",
-    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxYWdkbm54b21vYnl5b2ZwbXRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcxMzYxNTIsImV4cCI6MjA3MjcxMjE1Mn0.ZGQz0blL_OptiY8oUAtNxQdZhUOyc87hS05m6G2AtmY"
+
+  await Supabase.initialize(
+    url: "https://chdqlrpmatcwniwyhahx.supabase.co",
+    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNoZHFscnBtYXRjd25pd3loYWh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1OTY2NTcsImV4cCI6MjA3MjE3MjY1N30.msMf6RhfR01mPGOkf08c_lhbxBhhAm7y784nvWpxmYU",
   );
-  
-  runApp(const MyApp());
+
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// Global Supabase client
+final supabase = Supabase.instance.client;
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Simple To-Do List',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: TodoListScreen(),
       debugShowCheckedModeBanner: false,
-      title: 'Todo App',
-      theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 139, 38, 233),
-      ),
-      home: const SignInPage(),
     );
   }
 }
-  
 
-  
+class TodoListScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Simple To-Do List')),
+      body: Center(child: Text('Hello from Supabase!')),
+    );
+  }
+}
