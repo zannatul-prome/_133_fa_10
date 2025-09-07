@@ -40,4 +40,17 @@ class AuthService {
       UserAttributes(data: metadata),
     );
   }
+
+  // Check if email is verified
+  bool isEmailVerified() {
+    return _supabase.auth.currentUser?.emailConfirmedAt != null;
+  }
+
+  // Resend verification email
+  Future<void> resendVerificationEmail() async {
+    await _supabase.auth.resend(
+      type: OtpType.signup,
+      email: _supabase.auth.currentUser!.email!,
+    );
+  }
 }
