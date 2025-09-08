@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 
-class Task {
-  final String title;
-  final bool isCompleted;
+void main() {
+  runApp(MyApp());
+}
 
-  Task(this.title, this.isCompleted);
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Pastel To-Do List',
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: TodoListScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }
 
 class TodoListScreen extends StatefulWidget {
@@ -63,28 +74,12 @@ class _TodoListScreenState extends State<TodoListScreen> {
     });
   }
 
-  void _exitApp() {
-    exit(0);
-  }
-
-  int get totalTasks => tasks.length;
-  int get completedTasks => tasks.where((task) => task.isCompleted).toList().length;
-  int get pendingTasks => totalTasks - completedTasks;
-  double get successRate => totalTasks == 0 ? 0 : (completedTasks / totalTasks) * 100;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Pastel To-Do List'),
         backgroundColor: Colors.pink.shade200,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
-            onPressed: _exitApp,
-            tooltip: 'Exit App',
-          ),
-        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -101,35 +96,24 @@ class _TodoListScreenState extends State<TodoListScreen> {
         ),
         child: Column(
           children: [
-            // Summary cards - reduced vertical padding
+            // Input Field
             Padding(
-              padding: const EdgeInsets.all(8.0), // Reduced from 12.0
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildSummaryCard(
-                      'Total', totalTasks.toString(), Colors.blue.shade200),
-                  _buildSummaryCard('Completed', completedTasks.toString(),
-                      Colors.green.shade200),
-                  _buildSummaryCard(
-                      'Pending', pendingTasks.toString(), Colors.orange.shade200),
-                  _buildSummaryCard(
-                      'Success', '${successRate.toStringAsFixed(0)}%',
-                      Colors.pink.shade200),
-                ],
-              ),
-            ),
-
-            // Input Field - reduced vertical padding
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6), // Reduced from 8
+              padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
                   Expanded(
-                    child: Card(
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
                       child: TextField(
                         controller: _textController,
                         decoration: InputDecoration(
@@ -138,7 +122,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                               : 'Edit your task',
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12), // Reduced from 14
+                              horizontal: 16, vertical: 14),
                         ),
                       ),
                     ),
@@ -153,7 +137,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 12), // Reduced from 14
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                       ),
                       child: Text('Add', style: TextStyle(fontSize: 16)),
                     )
@@ -169,7 +153,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 12), // Reduced from 14
+                                horizontal: 20, vertical: 14),
                           ),
                           child: Text('Save', style: TextStyle(fontSize: 16)),
                         ),
@@ -190,15 +174,32 @@ class _TodoListScreenState extends State<TodoListScreen> {
                 itemCount: tasks.length,
                 itemBuilder: (context, index) {
                   final task = tasks[index];
-                  return Card(
-                    elevation: 3,
-                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4), // Reduced from 6
-                    shape: RoundedRectangleBorder(
+                  // Choose gradient based on task index for variety
+                  final gradientColors = [
+                    [Colors.white, Colors.pink.shade50],
+                    [Colors.white, Colors.green.shade50],
+                    [Colors.white, Colors.orange.shade50],
+                  ];
+                  final colors = gradientColors[index % 3];
+
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: colors,
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
                     ),
                     child: ListTile(
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 6), // Reduced from 8
                       leading: Checkbox(
                         value: task.isCompleted,
                         onChanged: (value) => _toggleTask(index),
@@ -237,33 +238,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
       ),
     );
   }
+}
 
-  Widget _buildSummaryCard(String title, String value, Color color) {
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      color: color,
-      child: Container(
-        width: 70, // Reduced from 75
-        height: 70, // Reduced from 75
-        padding: EdgeInsets.all(6), // Reduced from 8
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(value,
-                style: TextStyle(
-                    fontSize: 16, // Reduced from 18
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white)),
-            SizedBox(height: 2), // Reduced from 4
-            Text(title,
-                style: TextStyle(
-                    fontSize: 11, // Reduced from 12
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white)),
-          ],
-        ),
-      ),
-    );
-  }
+class Task {
+  final String title;
+  final bool isCompleted;
+
+  Task(this.title, this.isCompleted);
 }
