@@ -89,23 +89,24 @@ class _TodoListScreenState extends State<TodoListScreen> {
     }
   }
 
-  Future<void> _toggleTask(int index) async {
-    setState(() => _loading = true);
-    try {
-      final current = tasks[index];
-      final updated = await _taskService.updateTask(
-        current.id,
-        // isCompleted: !current.isComplete, // matches TaskService
-      );
-      setState(() => tasks[index] = updated);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Toggle failed: $e')),
-      );
-    } finally {
-      setState(() => _loading = false);
-    }
+Future<void> _toggleTask(int index) async {
+  setState(() => _loading = true);
+  try {
+    final current = tasks[index];
+    final updated = await _taskService.updateTask(
+      current.id,
+      isComplete: !current.isComplete, // toggle the current state
+    );
+    setState(() => tasks[index] = updated);
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Toggle failed: $e')),
+    );
+  } finally {
+    setState(() => _loading = false);
   }
+}
+
 
   void _startEditing(int index) {
     setState(() {
